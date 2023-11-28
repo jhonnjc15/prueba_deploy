@@ -43,12 +43,34 @@ module.exports = {
         text: theme.colors.default.text_color.default,
         light: theme.colors.default.text_color.light,
         dark: theme.colors.default.text_color.dark,
-        primary: theme.colors.default.theme_color.primary,
-        secondary: theme.colors.default.theme_color.secondary,
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
         body: theme.colors.default.theme_color.body,
         border: theme.colors.default.theme_color.border,
         "theme-light": theme.colors.default.theme_color.theme_light,
         "theme-dark": theme.colors.default.theme_color.theme_dark,
+        paqariGreen: '#217276',
+        paqariGreenDark: '#0c2324',
+        paqariYellow: '#f3a415',
+        paqariYellowHover: '#f3b815',
+      },
+      textColor: {
+        default: "var(--color-text)",
+        offset: "var(--color-text-offset)",
+        secondary: "var(--color-secondary)",
+      },
+      backgroundColor: {
+        default: "var(--color-background)",
+        offset: "var(--color-background-offset)",
+      },
+      borderColor: {
+        default: "var(--color-border)",
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(rgb(33, 114, 118), rgb(12, 35, 36))',
+        'gradient-radial-contact': 'linear-gradient(180deg, rgba(33,114,118,1) 0%, rgba(12,35,36,1) 100%);',
+        'gradient-linear-contact2': ' linear-gradient(278deg, rgba(243,164,21,1) 0%, rgba(33,114,118,1) 100%)'
+
       },
       fontSize: {
         base: font_base + "px",
@@ -69,6 +91,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('flowbite/plugin'),
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
     require("tailwind-bootstrap-grid")({ generateContainer: false }),

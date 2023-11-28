@@ -1,5 +1,6 @@
 import { humanize } from "@lib/utils/textConverter";
 import * as Icon from "react-feather";
+import React from 'react';
 
 const Projects = ({ projects }) => {
   return (

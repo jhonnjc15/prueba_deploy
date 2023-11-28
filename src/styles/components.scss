@@ -144,6 +144,15 @@
   max-height: 100vh;
 }
 
+//input-labels
+.form-control-paqari {
+  @apply h-[50px] w-full mt-3 bg-gray-100  rounded-lg border-border border-2 text-dark placeholder:text-[#B0B0B0] focus:border-primary focus:ring-transparent;
+}
+.form-control-paqari-message {
+  @apply h-36 w-full mt-3 bg-gray-100  rounded-lg border-border border-2 text-dark placeholder:text-[#B0B0B0] focus:border-primary focus:ring-transparent;
+}
+
+
 // form style
 .form-control,
 .form-select {
@@ -378,7 +387,7 @@ select:invalid {
     @apply mb-4 flex rounded py-0 text-dark opacity-100;
   }
   .tab-nav-item.active {
-    @apply border-b-0 bg-primary/40 py-3.5;
+    @apply border-b-0 bg-primary py-3.5;
   }
 }
 // career

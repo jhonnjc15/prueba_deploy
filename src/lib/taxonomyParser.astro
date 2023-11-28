@@ -13,7 +13,7 @@ export const getTaxonomy = async (collection: string, name: string) => {
       taxonomies.push(categoryArray[j]);
     }
   }
-  const taxonomy = [...new Set(taxonomies)];
+  const taxonomy = [...taxonomies];
   return taxonomy;
 };
 ---

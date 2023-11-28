@@ -3,6 +3,7 @@ import { humanize } from "@lib/utils/textConverter";
 import { marked } from "marked";
 import { AiOutlineArrowRight } from "react-icons/ai/index.js";
 
+
 const IntegrateMedia = ({ integrations, categories }) => {
   const [tab, setTab] = useState("");
   const filterPost = !tab
@@ -56,8 +57,8 @@ const IntegrateMedia = ({ integrations, categories }) => {
                     ))}
                   </div>
                 </div>
-                <div className="my-5 border-y border-border py-5">
-                  <p
+                <div className="my-5 border-y border-border py-5 dark:text-black">
+                  <p 
                     dangerouslySetInnerHTML={{
                       __html: marked.parseInline(
                         item.data.excerpt.slice(0, 80)

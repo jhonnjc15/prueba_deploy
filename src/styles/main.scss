@@ -3,8 +3,57 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-primary: #217276;
+    --color-secondary: #f3a415;
+    --color-text: theme("colors.gray.900");
+    --color-text-offset: theme("colors.gray.600");
+    --color-background: #f2fbfa;
+    --color-background-offset: #75d3d1;
+    --color-border: #217276;
+  };
   @import "base";
 }
+.dark {
+  --color-primary: #f3a415;
+  --color-secondary: #217276;
+  --color-text: theme("colors.gray.50");
+  --color-text-offset: theme("colors.gray.400");
+  --color-background: #0b2528;
+  --color-background-offset: #1e4d51;
+  --color-border: #f3a415;
+}
+
+/*
+PaqariGreen
+--atoll-50: #f2fbfa;
+--atoll-100: #d4f3f1;
+--atoll-200: #a8e7e4;
+--atoll-300: #75d3d1;
+--atoll-400: #48b9b9;
+--atoll-500: #2f9a9d;
+--atoll-600: #217276; Main
+--atoll-700: #206165;
+--atoll-800: #1e4d51;
+--atoll-900: #1d4144;
+--atoll-950: #0b2528;
+*/
+
+/*
+PaqariYellow
+--yellow-sea-50: #fffbeb;
+--yellow-sea-100: #fdf4c8;
+--yellow-sea-200: #fce78b;
+--yellow-sea-300: #fad54f;
+--yellow-sea-400: #f9c126;
+--yellow-sea-500: #f3a415; Main
+--yellow-sea-600: #d77a08;
+--yellow-sea-700: #b2560b;
+--yellow-sea-800: #91420f;
+--yellow-sea-900: #773710;
+--yellow-sea-950: #441b04;
+*/
+
 
 @layer components {
   @import "components";

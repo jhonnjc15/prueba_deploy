@@ -4,6 +4,8 @@ import SwiperCore, { Autoplay, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import React from 'react';
+
 
 const TestimonialSlider = ({ list }) => {
   SwiperCore.use([Pagination]);

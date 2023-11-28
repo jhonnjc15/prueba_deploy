@@ -1,14 +1,14 @@
 {
   "site": {
-    "title": "Pinwheel Astro",
+    "title": "Paqari Open Lab",
     "base_url": "https://pinwheel-astro.vercel.app",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
-    "logo_width": "147",
-    "logo_height": "31",
-    "logo_text": "Pinwheel"
+    "favicon": "/images/LogoPaqariTransparentePequeño.png",
+    "logo": "/images/LogoPaqariTransparente.png",
+    "logo_width": "157",
+    "logo_height": "61",
+    "logo_text": ""
   },
 
   "settings": {
@@ -38,11 +38,11 @@
     "location": "2118 Thornridge Cir. Syracuse, Connecticut 35624",
     "phone": "+704-555-0127",
     "contact_form_action": "#",
-    "copyright": "Copyright © 2023 a theme by [Themefisher](https://themefisher.com)"
+    "copyright": "Copyright © 2023 a theme by [PaqariOpenLab](https://themefisher.com)"
   },
 
   "metadata": {
-    "meta_author": "Themefisher",
+    "meta_author": "PaqariOpenLab",
     "meta_image": "/images/og-image.png",
     "meta_description": "pinwheel astro"
   }

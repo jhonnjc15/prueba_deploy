@@ -8,14 +8,14 @@ input#nav-toggle:checked ~ label#hide-button {
 }
 
 input#nav-toggle:checked ~ #nav-menu {
-  @apply block lg:flex;
+  @apply block lg:flex border-b dark:border-gray-600 border-primary lg:border-0 ;
 }
 
 .header {
-  @apply sticky top-0 z-50  bg-white py-6 transition-all duration-300 lg:bg-transparent;
+  @apply sticky top-0  z-50 bg-default px-5 sm:px-10 py-6 transition-all duration-300 bg-transparent;
 
   &-sticky {
-    @apply bg-white shadow;
+    @apply bg-default opacity-95 dark:border-b dark:border-gray-600 shadow;
   }
 }
 
@@ -36,13 +36,13 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .nav-link {
-  @apply block p-3 py-2 text-[15px] text-dark transition hover:text-primary md:px-2 lg:inline-block;
+  @apply block p-3 py-2 text-[15px] text-dark transition dark:text-default dark:hover:text-primary hover:text-primary md:px-2 lg:inline-block ;
 
   &.active {
-    @apply relative;
+    @apply relative text-primary;
 
     &::after {
-      @apply absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-tl content-[''];
+      @apply absolute bottom-0 left-2 right-2 h-0.5  bg-primary content-[''];
     }
   }
 }
@@ -52,7 +52,7 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .nav-dropdown-list {
-  @apply z-10 mx-auto ml-1 mt-4 max-w-[300px] rounded-lg border-0 border-solid  border-primary/25 bg-primary/5 px-4 py-3  shadow-sm duration-300  lg:mt-0 lg:border lg:bg-white lg:shadow-[0_0.9rem_1.56rem_rgb(0,0,0,0.1)];
+  @apply z-10 mx-auto ml-1 mt-4 max-w-[300px] rounded-lg border-0 border-solid  border-primary bg-offset px-4 py-3  shadow-sm duration-300  lg:mt-0 lg:border lg:bg-white lg:shadow-[0_0.9rem_1.56rem_rgb(0,0,0,0.1)];
 }
 
 .nav-dropdown-item {

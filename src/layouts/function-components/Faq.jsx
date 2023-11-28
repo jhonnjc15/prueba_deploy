@@ -1,5 +1,6 @@
 import { marked } from "marked";
 import { useState } from "react";
+import React from 'react';
 
 const Faq = ({ data }) => {
   const [isActive, setIsActive] = useState([]);

@@ -1,6 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
-import PageHeader from "@components/PageHeader.astro";
+import { Image } from 'astro:assets';import PageHeader from "@components/PageHeader.astro";
 import Shape from "@components/Shape.astro";
 import Base from "@layouts/Base.astro";
 import Cta from "@layouts/partials/Cta.astro";
@@ -35,7 +34,7 @@ const page_data = {
               <div
                 class={`relative mx-auto mb-8 flex h-[184px] w-[184px] items-center justify-center rounded-xl bg-white p-4 shadow-lg ${
                   perfomance.length - 1 !== i
-                    ? "after:absolute after:-right-4 after:-z-[1] after:hidden after:w-full after:translate-x-full after:border-b-2 after:border-dashed after:border-primary/50 after:content-[''] md:after:block"
+                    ? "after:absolute after:-right-4 after:-z-[1] after:hidden after:w-full after:translate-x-full after:border-b-2 after:border-dashed after:border-primary after:content-[''] md:after:block"
                     : undefined
                 }`}
               >

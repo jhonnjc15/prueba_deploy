@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const Changelog = ({ children, date }) => {
   return (
     <section className="section changelogs pt-0">

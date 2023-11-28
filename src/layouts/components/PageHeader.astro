@@ -6,7 +6,7 @@ const { title, index_title, page_title, slug, content } = page_data || {};
 
 <div class="text-center">
   <ul
-    class="breadcrumb inline-flex h-8 items-center justify-center space-x-2 rounded-3xl bg-theme-light px-4 py-2"
+    class=" border-2 border-primary breadcrumb inline-flex h-8 items-center justify-center space-x-2 rounded-3xl bg-theme-light px-4 py-2"
   >
     <li class="leading-none text-dark">
       <a href="/" class="inline-flex items-center text-primary">
@@ -42,12 +42,12 @@ const { title, index_title, page_title, slug, content } = page_data || {};
     </li>
   </ul>
   <h1
-    class="mb-5 mt-8"
+    class="mb-5 mt-8 text-default"
     set:html={markdownify(
       page_data?.page_title ? page_data?.page_title : page_data?.title
     )}
   />
-  <p set:html={markdownify(content)} />
+  <p class='text-default' set:html={markdownify(content)} />
 
   {
     page_data.buttons && (

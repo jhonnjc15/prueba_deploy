@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { humanize } from "@lib/utils/textConverter";
 import * as Icon from "react-feather";
+import React from 'react';
 
 const HomepageTab = ({ homepage_tab: { tab_list, title, description } }) => {
   const [tab, setTab] = useState(0);

@@ -20,6 +20,6 @@ export const sortByWeight = (array: any[]) => {
     (a: { data: { weight: number } }, b: { data: { weight: number } }) =>
       a.data.weight - b.data.weight
   );
-  const sortedArray = [...new Set([...sortedWeightedArray, ...withoutWeight])];
+  const sortedArray = [...[...sortedWeightedArray, ...withoutWeight]];
   return sortedArray;
 };

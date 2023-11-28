@@ -1,7 +1,6 @@
 ---
 import Logo from "@components/Logo.astro";
 import menu from "@config/menu.json";
-
 export interface ChildNavigationLink {
   name: string;
   url: string;
@@ -18,18 +17,21 @@ const { main }: { main: NavigationLink[] } = menu;
 const { pathname } = Astro.url;
 ---
 
-<header class="header">
-  <nav class="navbar container">
+
+
+
+<header  class="header">
+  <nav  class="navbar container">
     <!-- logo -->
     <div class="order-0">
-      <Logo />
+      <Logo/>
     </div>
     <!-- navbar toggler -->
     <input id="nav-toggle" type="checkbox" class="hidden" />
     <label
       id="show-button"
       for="nav-toggle"
-      class="order-2 flex cursor-pointer items-center lg:order-1 lg:hidden"
+      class="order-2 flex cursor-pointer items-center lg:order-1 lg:hidden dark:text-black"
     >
       <svg class="h-6 fill-current" viewBox="0 0 20 20">
         <title>Menu Open</title>
@@ -39,7 +41,7 @@ const { pathname } = Astro.url;
     <label
       id="hide-button"
       for="nav-toggle"
-      class="order-2 hidden cursor-pointer items-center lg:order-1"
+      class="order-2 hidden cursor-pointer items-center lg:order-1 dark:text-black"
     >
       <svg class="h-6 fill-current" viewBox="0 0 20 20">
         <title>Menu Close</title>
@@ -51,6 +53,7 @@ const { pathname } = Astro.url;
     <!-- /navbar toggler -->
 
     <ul
+       
       id="nav-menu"
       class="navbar-nav order-3 hidden w-full lg:order-1 lg:flex lg:w-auto lg:space-x-2"
     >
@@ -59,11 +62,15 @@ const { pathname } = Astro.url;
           <>
             {menu.hasChildren ? (
               <li
-                class="nav-item nav-dropdown group relative cursor-pointer "
+                class=" nav-item nav-dropdown group relative cursor-pointer gap-0"
                 id="dropdown-button"
               >
-                <span
-                  class={`nav-link inline-flex items-center ${
+                <a
+                  href={menu.url}
+                  class={`nav-link peer inline-flex items-center mx-2 px-[8px]  ${
+                    (pathname === `${menu.url}/` || pathname === menu.url) &&
+                    "active"
+                  } ${
                     menu.children?.map(({ url }) => url).includes(pathname) ||
                     menu.children
                       ?.map(({ url }) => `${url}/`)
@@ -73,10 +80,13 @@ const { pathname } = Astro.url;
                   }`}
                 >
                   {menu.name}
-                  <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                </a>
+                <div class={`nav-link peer-hover:text-primary inline-flex items-center align-middle px-0 lg:absolute inset-y-0 lg:-right-1`}
+                >
+                  <svg class="h-4 w-4 fill-current " viewBox="0 0 20 20">
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                   </svg>
-                </span>
+                </div>
                 <ul
                   id="dropdown"
                   class="nav-dropdown-list mx-auto hidden duration-300 lg:invisible lg:absolute lg:block lg:h-auto lg:w-[13.5rem] lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100"
@@ -101,7 +111,7 @@ const { pathname } = Astro.url;
               <li class="nav-item">
                 <a
                   href={menu.url}
-                  class={`nav-link inline-block lg:block ${
+                  class={`nav-link inline-block lg:block mx-4 ${
                     (pathname === `${menu.url}/` || pathname === menu.url) &&
                     "active"
                   }`}
@@ -113,25 +123,123 @@ const { pathname } = Astro.url;
           </>
         ))
       }
-      <li class="nav-item mt-2 lg:hidden">
-        <a class="btn btn-white btn-sm border-border" href="/signin">
-          Sing Up Now</a
-        >
+      <li class="nav-item mt-4 lg:hidden flex flex-col items-center	gap-4	">
+        <!-- 
+          <a class="btn btn-white btn-sm border-border" href="/signin">
+          Sing Up Now
+          </a>
+        -->
+        <!-- Language button Mobile-->
+        <div class="w-16 shadow rounded  m-auto h-8 flex p-1 relative items-center bg-gray-200 border">
+          <div class="w-full flex justify-center">
+            <button class="cursor-default">EN</button>
+          </div>
+          <div class="w-full flex justify-center">
+            <button class="cursor-default">ES</button>
+          </div>
+          <button 
+          class="elSwitch bg-white shadow text-gray-800 flex items-center justify-center w-1/2 rounded h-8 absolute start-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 hover:transition hover:delay-200 hover:duration-500 hover:ease-in hover:shadow-2xl hover:h-7 hover:w-7 icon icon-tabler icon-tabler-world" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+            <path d="M3.6 9h16.8"></path>
+            <path d="M3.6 15h16.8"></path>
+            <path d="M11.5 3a17 17 0 0 0 0 18"></path>
+            <path d="M12.5 3a17 17 0 0 1 0 18"></path>
+          </svg>
+          </button>
+        </div>
+        <!-- Language button -->
+
+        <!-- Toggle theme mode Mobile-->
+        <button data-switch-theme_mobile class="outline-none bg-default flex relative text-heading-2 rounded-full m-2 p-1 lg:p-2">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:flex hidden dark:text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            <title>Switch to Light Mode</title>  
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:hidden ">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            <title>Switch to Dark Mode</title> 
+            
+          </svg>
+                          
+          <span class="sr-only">switch theme</span>
+        </button>
+  
+  
+
       </li>
     </ul>
+    
     <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
-      <a class="btn btn-white btn-sm" href="/signin"> Sing Up Now</a>
+      <!-- 
+        <a class="btn btn-white btn-sm border-border" href="/signin">
+          Sing Up Now
+        </a>
+      -->
+      <!-- Language button Full page-->
+      <div class="w-16 shadow rounded  m-auto h-8 flex p-1 relative items-center bg-gray-200 border">
+        <div class="w-full flex justify-center">
+          <button class="cursor-default">EN</button>
+        </div>
+        <div class="w-full flex justify-center">
+          <button class="cursor-default">ES</button>
+        </div>
+        <button 
+          class="elSwitch bg-white shadow text-gray-800 flex items-center justify-center w-1/2 rounded h-8 absolute start-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 hover:transition hover:delay-200 hover:duration-500 hover:ease-in hover:shadow-2xl hover:h-7 hover:w-7 icon icon-tabler icon-tabler-world" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+            <path d="M3.6 9h16.8"></path>
+            <path d="M3.6 15h16.8"></path>
+            <path d="M11.5 3a17 17 0 0 0 0 18"></path>
+            <path d="M12.5 3a17 17 0 0 1 0 18"></path>
+          </svg>
+          </button>
+      </div>
+      <!-- Language button -->
+
+      <!-- Toggle theme mode Full page-->
+      <button data-switch-theme class="outline-none bg-default flex relative text-heading-2 rounded-full m-2 p-1 lg:p-2">
+          
+        <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:flex hidden dark:text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+          <title>Switch to Light Mode</title>  
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:hidden ">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+          <title>Switch to Dark Mode</title> 
+          
+        </svg>
+                        
+        <span class="sr-only">switch theme</span>
+      </button>
+
     </div>
+    
   </nav>
 </header>
-<script is:inline>
+
+<script is:inline> 
+  //Se cambio <script is:inline> por solo <script>
+  
+  function button_2() {  
   const button = document.getElementById("dropdown-button");
   button.addEventListener("click", () => {
     const dropdown = document.getElementById("dropdown");
     dropdown.classList.toggle(dropdown.style === "hidden" ? "block" : "hidden");
   });
-
+  //const button = document.getElementById("dropdown-button");
+  //button.addEventListener("click", () => {
+    //const dropdown = document.getElementById("dropdown");
+    //dropdown.classList.toggle(dropdown.style.display === "none" ? "block" : "none");
+  //});
+  }
+  button_2()
   //sticky header
+
+  function header_2() {  
   const header = document.querySelector(".header");
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
@@ -141,4 +249,28 @@ const { pathname } = Astro.url;
       header.classList.remove("header-sticky");
     }
   });
+  }
+  header_2()
+
+  function elSwitchs_2() { 
+  const elSwitchs = document.querySelectorAll('.elSwitch')
+  elSwitchs.forEach( e => {
+          e.addEventListener('click', function(){
+          if (e.classList.contains('start-0')){
+              e.classList.remove('start-0')
+              e.classList.add('end-0')
+          }else {
+              e.classList.remove('end-0')
+              e.classList.add('start-0')
+          }
+          
+      })
+  } )
+  }
+  elSwitchs_2()
+
+
+  document.addEventListener('astro:after-swap', button_2);
+  document.addEventListener('astro:after-swap', header_2);
+  document.addEventListener('astro:after-swap', elSwitchs_2);
 </script>

@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Video = ({ title, width = 500, height = "auto", src, ...rest }) => {
   return (
     <video

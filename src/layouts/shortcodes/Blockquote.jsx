@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Blockquote = ({ name, children }) => {
   return (
     <div className="blockquote my-10 rounded-xl bg-white px-16 py-8 lg:px-20">
