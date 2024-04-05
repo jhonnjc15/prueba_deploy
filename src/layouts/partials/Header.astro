@@ -55,14 +55,14 @@ const { pathname } = Astro.url;
     <ul
        
       id="nav-menu"
-      class="border border-red-700 navbar-nav order-3 hidden w-full lg:order-1 lg:flex lg:w-auto lg:space-x-2"
+      class="navbar-nav order-3 hidden w-full lg:order-1 lg:flex lg:w-auto lg:space-x-2"
     >
       {
         main.map((menu) => (
           <>
             {menu.hasChildren ? (
               <li
-                class="border border-green-700 nav-item nav-dropdown group relative cursor-pointer gap-0"
+                class="nav-item nav-dropdown group relative cursor-pointer gap-0"
                 id="dropdown-button"
               >
                 <a
@@ -87,9 +87,10 @@ const { pathname } = Astro.url;
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                   </svg>
                 </div>
+                {/* Dropdown cambio de posicion (nav-dropdown-list) tamaño, color de fondo, etc*/}
                 <ul
                   id="dropdown"
-                  class="nav-dropdown-list mx-auto hidden duration-300 lg:invisible lg:absolute lg:block lg:h-auto lg:w-[13.5rem] lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100"
+                  class="nav-dropdown-list mx-auto duration-400 lg:text-center lg:invisible lg:absolute lg:-left-[3rem] lg:top-12 lg:h-auto lg:w-[13.5rem] lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100"
                 >
                   {menu.children?.map((child) => (
                     <li class="nav-dropdown-item">

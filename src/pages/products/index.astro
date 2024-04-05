@@ -8,6 +8,7 @@ import { getEntryBySlug } from "astro:content";
 import ProductsExperiences from "@components/products/ProductsExperiences.astro"
 
 const pricing = await getEntryBySlug("products", "index");
+console.log(pricing)
 const page_data = {
   ...pricing.data,
   content: pricing.body,
