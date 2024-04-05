@@ -9,6 +9,7 @@ import { getEntryBySlug } from "astro:content";
 
 const careerIndex: any = await getEntryBySlug("careers", "-index");
 const careers = await getSinglePage("careers");
+
 export async function getStaticPaths() {
   const careers = await getSinglePage("careers");
   const paths = careers.map((post) => ({
@@ -16,9 +17,12 @@ export async function getStaticPaths() {
       single: post.slug,
     },
     props: { post },
-  }));
+    }
+  ));
   return paths;
 }
+
+const { single } = Astro.params;
 const { post } = Astro.props;
 const { Content } = await post.render();
 const similarPosts = similerItems(post, careers, post.slug);
@@ -27,6 +31,7 @@ const page_data = {
   page_title: post.data.title,
   slug: post.slug,
 };
+console.log(page_data)
 ---
 
 <Base

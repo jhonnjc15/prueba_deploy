@@ -1,0 +1,50 @@
+---
+import type { GetStaticPaths } from "astro";
+import products_data from '../../data/products.json';
+import categories_data from '../../data/categories.json';
+import type { List } from "postcss/lib/list";
+
+interface Category {
+  name: string;
+  // Otros campos si los hay
+}
+
+function get_category_data_by_id({ name }) {
+  // Importa el archivo JSON directamente (asegúrate de que la ruta sea correcta)
+  console.log(name);
+  
+  // Busca la categoría por el nombre
+  const category = categories_data.find((category) => category.category_name === name);
+  //console.log(category);
+
+  // Devuelve la categoría si se encuentra, o null si no hay coincidencia
+  return category || null;
+}
+
+
+
+const { category } = Astro.params;
+console.log(category)
+
+let category_by_name
+const categoryByName: Category = { name: category };
+
+if (category) {
+  category_by_name = get_category_data_by_id(categoryByName);
+}
+
+console.log(category_by_name)
+export const getStaticPaths = (() => {
+  const all_categories = categories_data;
+  const allCategories = all_categories.map((category) => ({
+    params: {
+      category: category.category_name,
+    }
+  }));
+  return allCategories
+});
+---
+
+<h1>
+  {category_by_name.category_name}
+</h1>

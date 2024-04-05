@@ -1,0 +1,123 @@
+[
+    {
+      "id_product": 1,
+      "category": "educational",
+      "id_category": 1,
+      "name": "Advanced Mathematics Book",
+      "description": "An educational book covering advanced topics in mathematics for students and professionals.",
+      "feature_1": "Includes practical exercises",
+      "feature_2": "Focus on real-world problems",
+      "feature_3": "Authored by field experts",
+      "image": "url_image_1.jpg",
+      "video": "url_video_1.mp4"
+    },
+    {
+      "id_product": 2,
+      "category": "entertainment",
+      "id_category": 2,
+      "name": "Real-time Strategy Game",
+      "description": "An exciting real-time strategy game that challenges your wit and tactical skills.",
+      "feature_1": "Stunning graphics",
+      "feature_2": "Online multiplayer mode",
+      "feature_3": "Various scenarios and challenges",
+      "image": "url_image_2.jpg",
+      "video": "url_video_2.mp4"
+    },
+    {
+      "id_product": 3,
+      "category": "scientific",
+      "id_category": 3,
+      "name": "High-Resolution Digital Microscope",
+      "description": "A digital scientific microscope with high-resolution capability for research and discoveries in the field of biology.",
+      "feature_1": "Adjustable magnification",
+      "feature_2": "Capture images and videos",
+      "feature_3": "Data analysis platform",
+      "image": "url_image_3.jpg",
+      "video": "url_video_3.mp4"
+    },
+    {
+      "id_product": 4,
+      "category": "educational",
+      "id_category": 1,
+      "name": "Science Experiment Kit",
+      "description": "A set of educational experiments for students to explore and learn scientific concepts through hands-on activities.",
+      "feature_1": "Includes laboratory materials",
+      "feature_2": "Detailed guide for each experiment",
+      "feature_3": "Emphasis on practical experimentation",
+      "image": "url_image_4.jpg",
+      "video": "url_video_4.mp4"
+    },
+    {
+      "id_product": 5,
+      "category": "entertainment",
+      "id_category": 2,
+      "name": "3D Architecture Puzzle",
+      "description": "A challenging 3D puzzle recreating famous architectural structures for entertainment and learning.",
+      "feature_1": "High-quality pieces",
+      "feature_2": "Detailed assembly instructions",
+      "feature_3": "Ideal for architecture enthusiasts",
+      "image": "url_image_5.jpg",
+      "video": "url_video_5.mp4"
+    },
+    {
+      "id_product": 6,
+      "category": "scientific",
+      "id_category": 3,
+      "name": "Portable Spectrometer",
+      "description": "A compact spectrometer for chemical analysis in the field, perfect for mobile scientific research.",
+      "feature_1": "Quick and accurate analysis",
+      "feature_2": "User-friendly interface",
+      "feature_3": "Portable and lightweight",
+      "image": "url_image_6.jpg",
+      "video": "url_video_6.mp4"
+    },
+    {
+      "id_product": 7,
+      "category": "educational",
+      "id_category": 1,
+      "name": "Online World History Course",
+      "description": "An online educational course covering the most important events in world history, from ancient times to the modern era.",
+      "feature_1": "Video lessons by experts",
+      "feature_2": "Complementary reading material",
+      "feature_3": "Quizzes and assessments",
+      "image": "url_image_7.jpg",
+      "video": "url_video_7.mp4"
+    },
+    {
+      "id_product": 8,
+      "category": "entertainment",
+      "id_category": 2,
+      "name": "LED Juggling Ball",
+      "description": "A juggling ball with built-in LED lights for impressive performances and nighttime entertainment.",
+      "feature_1": "Programmable lights",
+      "feature_2": "Durable and waterproof",
+      "feature_3": "Ideal for advanced jugglers",
+      "image": "url_image_8.jpg",
+      "video": "url_video_8.mp4"
+    },
+    {
+      "id_product": 9,
+      "category": "scientific",
+      "id_category": 3,
+      "name": "Professional Astronomical Telescope",
+      "description": "A powerful telescope for detailed astronomical observations, designed for enthusiasts and astronomy professionals.",
+      "feature_1": "Adjustable magnification",
+      "feature_2": "Stable mount",
+      "feature_3": "Includes observation accessories",
+      "image": "url_image_9.jpg",
+      "video": "url_video_9.mp4"
+    },
+    {
+      "id_product": 10,
+      "category": "educational",
+      "id_category": 1,
+      "name": "Children's Robotics Kit",
+      "description": "An educational robotics kit introducing children to the world of programming and robot building in a fun and educational way.",
+      "feature_1": "Easy to assemble",
+      "feature_2": "Includes programming manual",
+      "feature_3": "Develops STEM skills",
+      "image": "url_image_10.jpg",
+      "video": "url_video_10.mp4"
+    }
+  ]
+  

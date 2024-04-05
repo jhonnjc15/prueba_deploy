@@ -1,0 +1,17 @@
+@keyframes comein {
+  from {
+    opacity: 0;
+    transform: translateX(-20px); /* Movimiento inicial desde la izquierda */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* Sin transformación, posición final */
+  }
+}
+
+.comein-animation {
+  animation-name: comein;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
