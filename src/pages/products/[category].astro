@@ -1,7 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
-import products_data from '../../data/products.json';
-import categories_data from '../../data/categories.json';
+import categories_data from '../../content/products/data/categories.json';
 import type { List } from "postcss/lib/list";
 
 interface Category {
@@ -33,7 +32,6 @@ if (category) {
   category_by_name = get_category_data_by_id(categoryByName);
 }
 
-console.log(category_by_name)
 export const getStaticPaths = (() => {
   const all_categories = categories_data;
   const allCategories = all_categories.map((category) => ({

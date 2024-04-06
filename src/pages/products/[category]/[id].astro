@@ -6,7 +6,7 @@ import Base from "@layouts/Base.astro";
 import BlogSingle from "@layouts/BlogSingle.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import Blockquotek from "@shortcodes/Blockquote";
-import products_data from '../../../../src/data/products.json';
+import products_data from '../../../content/products/data/products.json';
 
 
 function get_product_data_by_id({ id }) {
@@ -42,6 +42,5 @@ export const getStaticPaths = (() => {
 ---
 
 <h1>
-  {data_by_id.id_product}
-  {data_by_id.category}
+  {data_by_id.description}
 </h1>

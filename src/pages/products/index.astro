@@ -6,6 +6,7 @@ import Faq from "@layouts/function-components/Faq.jsx";
 import PricingCard from "@layouts/function-components/PricingCard.jsx";
 import { getEntryBySlug } from "astro:content";
 import ProductsExperiences from "@components/products/ProductsExperiences.astro"
+import products_data from '../../content/products/data/products.json';
 
 const pricing = await getEntryBySlug("products", "index");
 console.log(pricing)
@@ -13,10 +14,11 @@ const page_data = {
   ...pricing.data,
   content: pricing.body,
 };
+console.log(page_data)
 ---
 
 <Base
-  title={pricing.data.title}
+  
   meta_title={pricing.data.meta_title}
   description={pricing.data.description}
   image={pricing.data.image}

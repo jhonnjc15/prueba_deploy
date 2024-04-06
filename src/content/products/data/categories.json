@@ -1,0 +1,17 @@
+[
+    {
+        "category_name": "educational",
+        "id_category": 1,
+        "description": "Hola educational"
+    },
+    {
+        "category_name": "entertainment",
+        "id_category": 2,
+        "description": "Hola entertainment"
+    },
+    {
+        "category_name": "scientific",
+        "id_category": 3,
+        "description": "Hola scientific"
+    }
+]
