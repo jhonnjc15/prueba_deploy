@@ -1,17 +1,29 @@
 [
     {
         "category_name": "educational",
+        "name": "Educational",
+        "url": "/products/educational",
+        "image_url": "https://cdn-icons-png.flaticon.com/512/4341/4341160.png",
         "id_category": 1,
-        "description": "Hola educational"
+        "short_description": "Neque Dolor, fugiat non.",
+        "long_description": "Hola entertainment Hola entertainmentHola entertainmentHola entertainment entertainmentHola entertainmententertainmentHola entertainmententertainmentHola entertainmententertainmentHola entertainmententertainmentHola entertainment"
     },
     {
         "category_name": "entertainment",
+        "name": "Entertainment",
+        "url": "/products/entertainment",
+        "image_url": "https://cdn-icons-png.flaticon.com/512/4341/4341139.png",
         "id_category": 2,
-        "description": "Hola entertainment"
+        "short_description": "Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.",
+        "long_description": "Hola entertainment Hola entertainmentHola entertainmentHola entertainment entertainmentHola entertainmententertainmentHola entertainmententertainmentHola entertainmententertainmentHola entertainmententertainmentHola entertainment"
     },
     {
         "category_name": "scientific",
+        "name": "Scientific",
+        "url": "/products/scientific",
+        "image_url": "https://cdn-icons-png.flaticon.com/512/4341/4341134.png",
         "id_category": 3,
-        "description": "Hola scientific"
+        "short_description": "Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum. Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.",
+        "long_description": "Hola entertainment Hola entertainmentHola entertainmentHola entertainment entertainmentHola entertainmententertainmentHola entertainmententertainmentHola entertainmententertainmentHola entertainmententertainmentHola entertainment"
     }
 ]
