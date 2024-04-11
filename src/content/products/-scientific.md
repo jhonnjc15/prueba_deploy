@@ -1,5 +1,5 @@
 ---
-title: scientific
+title: Scientific
 page_title: Our scientific Products
 ---
 scientific Donec sollicitudin molestie malesda. Donec sollitudin molestie malesuada. Mauris <br />

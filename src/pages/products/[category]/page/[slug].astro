@@ -53,6 +53,7 @@ const currentPosts = recentPost_category.slice(indexOfFirstPost, indexOfLastPost
 const page_data = {
   index_title: blogIndex.data.title,
   slug: `page / ${slug}`,
+  index_path: `${config.settings.product_folder}/${blogIndex.data.title.toLowerCase()}`
 };
 console.log(page_data)
 
