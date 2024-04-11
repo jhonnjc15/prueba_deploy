@@ -6,11 +6,14 @@ import Faq from "@layouts/function-components/Faq.jsx";
 import PricingCard from "@layouts/function-components/PricingCard.jsx";
 import { getEntryBySlug } from "astro:content";
 
+
 const pricing = await getEntryBySlug("pricing", "index");
+console.log(pricing)
 const page_data = {
   ...pricing.data,
   content: pricing.body,
 };
+console.log(page_data)
 ---
 
 <Base

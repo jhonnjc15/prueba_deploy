@@ -12,9 +12,10 @@
   },
 
   "settings": {
-    "pagination": 6,
+    "pagination": 2,
     "summary_length": 100,
-    "blog_folder": "blog"
+    "blog_folder": "blog",
+    "product_folder": "products"
   },
 
   "call_to_action": {

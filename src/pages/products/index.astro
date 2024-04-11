@@ -3,25 +3,42 @@ import PageHeader from "@components/PageHeader.astro";
 import Shape from "@components/Shape.astro";
 import Base from "@layouts/Base.astro";
 import Faq from "@layouts/function-components/Faq.jsx";
-import PricingCard from "@layouts/function-components/PricingCard.jsx";
 import { getEntryBySlug } from "astro:content";
 import ProductsExperiences from "@components/products/ProductsExperiences.astro"
-import products_data from '../../content/products/data/products.json';
 
-const pricing = await getEntryBySlug("products", "index");
-console.log(pricing)
+import Products from "@components/products/Products.astro";
+import Blogs from "@components/Blogs.astro";
+import config from "@config/config.json";
+import Pagination from "@layouts/components/Pagination.astro";
+import { getSinglePage } from "@lib/contentParser.astro";
+import { sortByDate } from "@lib/utils/sortFunctions";
+
+
+const { product_folder } = config.settings; // "blog"
+const posts = await getSinglePage(product_folder);
+const sortedPosts = sortByDate(posts);
+const recentPost = sortedPosts.filter((item) => !item.data.featured);
+const totalPages = Math.ceil(recentPost.length / config.settings.pagination);
+const currentPosts = recentPost.slice(0, config.settings.pagination);
+
+console.log(sortedPosts)
+console.log(currentPosts)
+console.log(product_folder)
+
+const products = await getEntryBySlug("products", "-index");
+console.log(products)
 const page_data = {
-  ...pricing.data,
-  content: pricing.body,
+  ...products.data,
+  content: products.body,
 };
 console.log(page_data)
 ---
 
 <Base
-  title={pricing.data.title}
-  meta_title={pricing.data.meta_title}
-  description={pricing.data.description}
-  image={pricing.data.image}
+  title={products.data.title}
+  meta_title={products.data.meta_title}
+  description={products.data.description}
+  image={products.data.image}
 >
   <Shape />
   <section class="page-hero pb-4 pt-16">
@@ -29,9 +46,22 @@ console.log(page_data)
       <PageHeader page_data={page_data} />
     </div>
   </section>
-  <!-- pricing -->
+  <!-- products -->
   <section class="section mt-12 pt-0">
     <ProductsExperiences/>
   </section>
-  <Faq client:load data={pricing.data} />
+  <section class="border border-red-700 section mt-12 pt-0 mx-10">
+    <h2 class="h4 mb-4">Recent Posts</h2>
+    
+    <Products products={currentPosts} />
+    
+    <Pagination
+      section={product_folder}
+      currentPage={1}
+      totalPages={totalPages}
+    />
+  </section>
+  {/*
+  <Faq client:load data={products.data} />
+   */}
 </Base>

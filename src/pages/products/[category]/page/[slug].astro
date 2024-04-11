@@ -1,0 +1,87 @@
+---
+import Blogs from "@components/Blogs.astro";
+import PageHeader from "@components/PageHeader.astro";
+import Shape from "@components/Shape.astro";
+import Products from "@components/products/Products.astro";
+import config from "@config/config.json";
+import Base from "@layouts/Base.astro";
+import Pagination from "@layouts/components/Pagination.astro";
+import { getSinglePage } from "@lib/contentParser.astro";
+import { sortByDate } from "@lib/utils/sortFunctions";
+import { getEntryBySlug } from "astro:content";
+import categoriesData from "../../../../data/categories.json" // Importa el archivo JSON con las categorías
+
+
+export async function getStaticPaths() {
+  const posts = await getSinglePage(config.settings.product_folder);
+  const totalPages = Math.ceil(posts.length / config.settings.pagination);
+  const paths = [];
+
+  // Itera sobre las categorías
+  categoriesData.forEach((category) => {
+    for (let i = 1; i <= totalPages; i++) {
+      paths.push({
+        params: {
+          slug: (i+1).toString(),
+          category: category.category_name // Utiliza el campo category_name del JSON para obtener la categoría
+        },
+      });
+    }
+  });
+
+  return paths;
+}
+
+const { category, slug } = Astro.params;
+
+const blogIndex = await getEntryBySlug<any, string>(
+  config.settings.product_folder,
+  `-${category}`
+);
+
+console.log(slug)
+console.log(category)
+const posts = await getSinglePage(config.settings.product_folder);
+const sortedPosts = sortByDate(posts);
+const recentPost = sortedPosts.filter((item) => !item.data.featured);
+const recentPost_category = recentPost.filter((item) => item.data.category===`${category}`);
+const totalPages = Math.ceil(recentPost_category.length / config.settings.pagination);
+const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
+const indexOfLastPost = currentPage * config.settings.pagination;
+const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
+const currentPosts = recentPost_category.slice(indexOfFirstPost, indexOfLastPost);
+const page_data = {
+  index_title: blogIndex.data.title,
+  slug: `page / ${slug}`,
+};
+console.log(page_data)
+
+const product_folder_category = `${config.settings.product_folder}/${category}` 
+
+---
+
+<Base
+  title={blogIndex.data.title}
+  meta_title={blogIndex.data.meta_title}
+  description={blogIndex.data.description}
+  image={blogIndex.data.image}
+>
+  <Shape />
+  <section class="page-hero pt-16">
+    <div class="container">
+      <PageHeader page_data={page_data} />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="h4 mb-4">Recent Posts</h2>
+      <Products products={currentPosts} />
+      <Pagination
+const product_folder_category = `${config.settings.product_folder}/${category}` 
+        section={product_folder_category}
+        totalPages={totalPages}
+        currentPage={currentPage}
+      />
+    </div>
+  </section>
+</Base>

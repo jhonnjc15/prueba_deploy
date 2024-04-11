@@ -6,41 +6,45 @@ import Base from "@layouts/Base.astro";
 import BlogSingle from "@layouts/BlogSingle.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import Blockquotek from "@shortcodes/Blockquote";
-import products_data from '../../../content/products/data/products.json';
+import { getEntryBySlug } from "astro:content";
 
-
-function get_product_data_by_id({ id }) {
-  // Importa el archivo JSON directamente (asegúrate de que la ruta sea correcta)
-  let int_id = parseInt(id)
-  // Busca el producto por el ID
-  const product = products_data.find((product) => product.id_product === int_id);
-
-  // Devuelve el producto si se encuentra, o null si no hay coincidencia
-  return product || null;
-}
-
-const { id } = Astro.params;
-
-let data_by_id
-
-if (id) {
-  data_by_id = get_product_data_by_id({id});
+interface Product {
+  data: {
+    id_product: string;
+    category: string;
+  };
 }
 
 
-export const getStaticPaths = (() => {
-  const all_products = products_data;
-  const allProducts = all_products.map((product) => ({
+export async function getStaticPaths() {
+  const all_products: unknown[] = await getSinglePage(config.settings.product_folder);
+  const allProducts = all_products.map((product: unknown) => ({
     params: {
-      id: product.id_product,
-      category: product.category
+      id: (product as Product).data?.id_product || '',
+      category: (product as Product).data?.category || ''
     }
   }));
-  return allProducts
-});
+  return allProducts;
+}
+
+const { category, id } = Astro.params;
+console.log(category)
+
+const data_by_id: unknown = await getEntryBySlug<any, string>(
+  config.settings.product_folder,
+  `product-${id}`
+);
+
+const { title, meta_title, description, image } = (data_by_id as any)?.data || {};
 
 ---
 
-<h1>
-  {data_by_id.description}
-</h1>
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+
+  { (data_by_id as any)?.data?.description }
+</Base>

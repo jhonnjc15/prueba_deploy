@@ -16,12 +16,16 @@ import { getEntryBySlug } from "astro:content";
 const { blog_folder } = config.settings;
 const blogIndex = await getEntryBySlug<any, string>(blog_folder, "-index");
 const posts = await getSinglePage(blog_folder);
+console.log(posts)
 const categories = await getTaxonomy(config.settings.blog_folder, "categories");
 const sortedPosts = sortByDate(posts);
 const featuredPost = sortedPosts.filter((item) => item.data.featured);
 const recentPost = sortedPosts.filter((item) => !item.data.featured);
 const totalPages = Math.ceil(recentPost.length / config.settings.pagination);
 const currentPosts = recentPost.slice(0, config.settings.pagination);
+
+console.log(blogIndex)
+console.log(blog_folder)
 ---
 
 <Base
@@ -30,6 +34,7 @@ const currentPosts = recentPost.slice(0, config.settings.pagination);
   description={blogIndex.data.description}
   image={blogIndex.data.image}
 >
+  {/*Para los circulos de colores*/}
   <Shape />
   <section class="page-hero pt-16">
     <div class="container">

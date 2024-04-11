@@ -11,7 +11,6 @@ const Faq = ({ data }) => {
       setIsActive((prev) => [...prev, index]);
     }
   };
-
   return (
     <section className="faqs section">
       <div className="container max-w-[1230px]">
