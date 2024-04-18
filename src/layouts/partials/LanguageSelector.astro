@@ -3,20 +3,13 @@ import ChevronIcon from "./Chevron.astro"
 import { LANGUAGES } from '@i18n/ui';
 import { getRouteFromUrl, useTranslatedPath, getLangFromUrl } from '@i18n/utils';
 
-console.log(Astro.url)
 const route = getRouteFromUrl(Astro.url);
-console.log(route)
 const lang = getLangFromUrl(Astro.url);
-console.log(lang)
 const translatePath = useTranslatedPath(lang);
-console.log(translatePath)
 const currentLocaleData = LANGUAGES[lang]
-console.log(currentLocaleData)
-
 const otherLocales = Object.values(LANGUAGES).filter(
   (locale) => locale.code !== lang
 )
-console.log(otherLocales)
 ---
 
 <div class="relative inline-block text-left">
@@ -31,7 +24,6 @@ console.log(otherLocales)
     >
       <currentLocaleData.flag />
       {currentLocaleData.name}
-      {console.log(currentLocaleData.name)}
       <ChevronIcon />
     </button>
     <ul
@@ -45,9 +37,6 @@ console.log(otherLocales)
               class="rounded-md bg-black/30 hover:bg-black/70 whitespace-no-wrap inline-flex justify-start items-center w-full gap-x-2 px-3 py-2"
               href={translatePath(`/${route ? route : ''}`, locale.code)}
             >
-              {console.log(locale.code)} 
-              {console.log(route)}
-              {console.log(translatePath(`/${route ? route : ''}`, locale.code))}
               <locale.flag />
               {locale.name}
             </a>

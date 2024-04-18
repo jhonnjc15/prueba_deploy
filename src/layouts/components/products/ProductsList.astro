@@ -7,9 +7,11 @@ import { humanize, plainify, slugify } from "@lib/utils/textConverter";
 const { summary_length } = config.settings;
 const { products } = Astro.props;
 
-import { getI18N } from '@i18n/index';
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 const { currentLocale } = Astro
+import { getI18N } from '@i18n/index';
+
 const i18n = getI18N({ currentLocale })
 ---
 
@@ -37,7 +39,9 @@ const i18n = getI18N({ currentLocale })
                */}
             </div>
             <h3 class="h4 card-title">
-              <a href={`/products/${item.data.category}/${item.data.id_product}`}>
+              <a 
+                href={getRelativeLocaleUrl(currentLocale ?? '',`${`/products/${item.data.category}/${item.data.id_product}`}`)}
+              >
                 {item.data.title}
               </a>
             </h3>

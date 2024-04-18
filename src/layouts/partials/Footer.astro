@@ -5,6 +5,13 @@ import config from "@config/config.json";
 import menu from "@config/menu.json";
 import social from "@config/social.json";
 import { markdownify } from "@lib/utils/textConverter";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+
+const { currentLocale } = Astro
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const { footer } = menu;
 const { copyright, location, email, phone, footer_description } = config.params;
 ---
@@ -29,8 +36,11 @@ const { copyright, location, email, phone, footer_description } = config.params;
           {
             footer.map((item, i) => (
               <li class={footer.length - 1 === i ? "mb-0" : "mb-4"}>
-                <a class="hover:text-primary hover:underline " href={item.url}>
-                  {item.name}
+                <a 
+                  href={getRelativeLocaleUrl(currentLocale ?? '',`${item.url}`)}
+                  class="hover:text-primary hover:underline "
+                >
+                  {t(`nav.${item.name.toLowerCase()}`)}
                 </a>
               </li>
             ))
