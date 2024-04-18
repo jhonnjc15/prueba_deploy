@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';import PageHeader from "@components/PageHeader.astro";
+import config from "@config/config.json";
+import Base from "@layouts/Base.astro";
+import { getEntryBySlug } from "astro:content";
+import Form from "@layouts/function-components/Form";
+
+const entry = await getEntryBySlug("contact", "index");
+const { contact_form_action } = config.params;
+const contact = entry.data;
+const page_data = {
+  ...contact,
+  content: contact.body,
+};
+
+---
+
+<Base
+  title={contact.title}
+  meta_title={contact.meta_title}
+  description={contact.description}
+  image={contact.image}
+>
+  <section class="page-hero pb-6 pt-16">
+    <div class="container">
+      <span class="w-4/12 lg:w-2/12 aspect-square bg-gradient-to-tr from-secondary to-green-400 absolute -top-5 lg:left-0 rounded-full skew-y-12 blur-2xl opacity-40 skew-x-12 rotate-90"></span>
+
+      <span class="w-2/12 lg:w-1/12 aspect-square bg-gradient-to-tr from-secondary to-green-400 absolute top-5 lg:top-[200px] left lg:right-[100px] rounded-full skew-y-12 blur-2xl opacity-40 skew-x-12 rotate-90"></span>
+      <PageHeader page_data={page_data} />
+    </div>
+  </section>
+
+  <section class="section pt-0">
+    <div class="container">
+      <div class="row">
+        <div class="md:col-6 order-2">
+          <Form transition:persist client:visible/>
+        </div>
+        <div class=" bg-gradient-to-tl pt-9 mb-10 text-center md:col-6 order-1 md:mb-0 ">
+          <div class="contact-img relative inline-flex pb-5 pl-5">
+            <Image
+              src="/images/contact_image.jpg"
+              height={564}
+              width={500}
+              alt=""
+            />
+            <Image
+              class="absolute bottom-0 left-0 -z-[1] h-14 w-14"
+              src="/images/shape-2.png"
+              alt=""
+              height={56}
+              width={56}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

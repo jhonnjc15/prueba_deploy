@@ -6,9 +6,15 @@ import readingTime from "@lib/utils/readingTime";
 import { humanize, plainify, slugify } from "@lib/utils/textConverter";
 const { summary_length } = config.settings;
 const { products } = Astro.props;
+
+import { getI18N } from '@i18n/index';
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 ---
 
 <div class="border border-blue-700 row">
+  <h2 class="h4 mb-4">{i18n.LAYOUTS.COMPONENTS.PRODUCTS.PRODUCTSLIST.H2_SUBTITLE}</h2>
   {
     products.map((item: any) => (
       <div class="border border-blue-700 mb-8 md:col-6 lg:col-4">

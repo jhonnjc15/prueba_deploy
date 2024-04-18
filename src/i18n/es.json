@@ -1,0 +1,14 @@
+{
+    "SEO_TITLE": "Tienda Paqari Open Lab",
+    "SEO_DESCRIPTION": "Esta es una descripción de prueba ",
+    "LAYOUTS": {
+        "COMPONENTS": {
+            "PRODUCTS": {
+                "PRODUCTSLIST": {
+                    "H2_SUBTITLE": "Total de productos."
+                }
+            }
+    
+        }
+    }  
+}

@@ -1,0 +1,50 @@
+---
+import type { GetStaticPaths } from "astro";
+import Shape from "@components/Shape.astro";
+import config from "@config/config.json";
+import Base from "@layouts/Base.astro";
+import BlogSingle from "@layouts/BlogSingle.astro";
+import { getSinglePage } from "@lib/contentParser.astro";
+import Blockquotek from "@shortcodes/Blockquote";
+import { getEntryBySlug } from "astro:content";
+
+interface Product {
+  data: {
+    id_product: string;
+    category: string;
+  };
+}
+
+
+export async function getStaticPaths() {
+  const all_products: unknown[] = await getSinglePage(config.settings.product_folder);
+  const allProducts = all_products.map((product: unknown) => ({
+    params: {
+      id: (product as Product).data?.id_product || '',
+      category: (product as Product).data?.category || ''
+    }
+  }));
+  return allProducts;
+}
+
+const { category, id } = Astro.params;
+console.log(category)
+
+const data_by_id: unknown = await getEntryBySlug<any, string>(
+  config.settings.product_folder,
+  `product-${id}`
+);
+
+const { title, meta_title, description, image } = (data_by_id as any)?.data || {};
+
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+
+  { (data_by_id as any)?.data?.description }
+</Base>

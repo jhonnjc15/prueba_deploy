@@ -3,7 +3,7 @@
     "title": "Paqari Open Lab",
     "base_url": "https://pinwheel-astro.vercel.app",
     "base_path": "/",
-    "trailing_slash": false,
+    "trailing_slash": true,
     "favicon": "/images/LogoPaqariTransparentePequeño.png",
     "logo": "/images/LogoPaqariTransparente.png",
     "logo_width": "157",

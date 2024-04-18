@@ -2,14 +2,14 @@
 import Blogs from "@components/Blogs.astro";
 import PageHeader from "@components/PageHeader.astro";
 import Shape from "@components/Shape.astro";
-import Products from "@components/products/Products.astro";
+import ProductsList from "@components/products/ProductsList.astro";
 import config from "@config/config.json";
 import Base from "@layouts/Base.astro";
 import Pagination from "@layouts/components/Pagination.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { getEntryBySlug } from "astro:content";
-import categoriesData from "../../../../data/categories.json" // Importa el archivo JSON con las categorías
+import categories_data from "@data/categories.json" // Importa el archivo JSON con las categorías
 
 
 export async function getStaticPaths() {
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
   const paths = [];
 
   // Itera sobre las categorías
-  categoriesData.forEach((category) => {
+  categories_data.forEach((category) => {
     for (let i = 1; i <= totalPages; i++) {
       paths.push({
         params: {
@@ -75,8 +75,7 @@ const product_folder_category = `${config.settings.product_folder}/${category}`
   </section>
   <section class="section">
     <div class="container">
-      <h2 class="h4 mb-4">Recent Posts</h2>
-      <Products products={currentPosts} />
+      <ProductsList products={currentPosts} />
       <Pagination
 const product_folder_category = `${config.settings.product_folder}/${category}` 
         section={product_folder_category}

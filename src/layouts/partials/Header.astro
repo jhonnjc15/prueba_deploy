@@ -1,6 +1,27 @@
 ---
 import Logo from "@components/Logo.astro";
 import menu from "@config/menu.json";
+import { ui } from '@i18n/ui'
+import { LANGUAGES } from '@i18n/ui';
+
+import LanguageSelector from "./LanguageSelector.astro"
+
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+import {getRouteFromUrl, getLangFromUrl, useTranslations, useTranslatedPath, } from '@i18n/utils';
+
+const route = getRouteFromUrl(Astro.url);
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const otherLocales = Object.values(LANGUAGES).filter(
+  (locale) => locale.code !== lang
+)
+console.log(otherLocales)
+
+
 export interface ChildNavigationLink {
   name: string;
   url: string;
@@ -15,6 +36,8 @@ export interface NavigationLink {
 
 const { main }: { main: NavigationLink[] } = menu;
 const { pathname } = Astro.url;
+
+const { currentLocale } = Astro
 ---
 
 <header  class="header">
@@ -62,14 +85,26 @@ const { pathname } = Astro.url;
                 class="nav-item nav-dropdown group relative cursor-pointer gap-0"
                 id="dropdown-button"
               >
+                {/* 
                 <a
-                  href={menu.url}
+                  href={getRelativeLocaleUrl(currentLocale ?? '',`${menu.url}`)}
                   class={`nav-link peer inline-flex items-center mx-2 px-[8px] ${
                     (pathname === `${menu.url}/` || pathname === menu.url || pathname.startsWith(`${menu.url}/`)) &&
                     "active"
                   }`}
                 >
-                  {menu.name}
+                */}
+                <a
+                  href={getRelativeLocaleUrl(currentLocale ?? '',`${menu.url}`)}
+                  class={`nav-link peer inline-flex items-center mx-2 px-[8px] ${
+                    (
+                      (pathname === `${menu.url}/` || pathname === menu.url || pathname.startsWith(`${menu.url}/`)) ||
+                      (currentLocale === 'en' && (pathname === `/en${menu.url}/` || pathname === `/en${menu.url}` || pathname.startsWith(`/en${menu.url}/`)))
+                    ) &&
+                    "active"
+                  }`}
+                >
+                  {t(`nav.${menu.name.toLowerCase()}`)}
                 </a>
                 <div class={`nav-link peer-hover:text-primary inline-flex items-center align-middle px-0 lg:absolute inset-y-0 lg:-right-1`}
                 >
@@ -86,16 +121,29 @@ const { pathname } = Astro.url;
                   <div class=" lg:flex lg:flex-col lg:divide-y lg:justify-center lg:w-1/2">
                   {menu.children?.map((child) => (
                     <li class="nav-dropdown-item">
+                      {/* 
                       <a
-                        href={child.url}
+                        href={getRelativeLocaleUrl(currentLocale ?? '',`${child.url}`)}
                         class={`py-2 lg:pt-3 lg:h-[85px] items-center nav-dropdown-link block ${
                           (pathname === `${child.url}/` ||
                             pathname === child.url) &&
                           "text-primary"
                         }`}
                       >
+                      */}
+                      <a
+                        href={getRelativeLocaleUrl(currentLocale ?? '',`${child.url}`)}
+                        class={`py-2 lg:pt-3 lg:h-[85px] items-center nav-dropdown-link block ${
+                          (
+                            (pathname === `${child.url}/` || pathname === child.url) ||
+                            (currentLocale === 'en' && (pathname === `/en${child.url}/` || pathname === `/en${child.url}`))
+                          ) &&
+                          "text-primary"
+                        }`}
+                      >
                         <div class="text-center flex flex-row gap-2 lg:justify-start justify-center items-center ">
-                        {child.name}
+                          {console.log(child.name.toLowerCase())}
+                          {t(`nav.${child.name.toLowerCase()}`)}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
                         </svg>
@@ -130,14 +178,27 @@ Use the code LEXINGTON30 and <span class="text-gray-400">get a 30% discount on t
               </li>
             ) : (
               <li class="nav-item">
+                {/*
                 <a
-                  href={menu.url}
+                  href={getRelativeLocaleUrl(currentLocale ?? '',`${menu.url}`)}
                   class={`nav-link inline-block lg:block mx-4 ${
                     (pathname === `${menu.url}/` || pathname === menu.url) &&
                     "active"
                   }`}
                 >
-                  {menu.name}
+                */}
+                <a
+                  href={getRelativeLocaleUrl(currentLocale ?? '',`${menu.url}`)}
+                  class={`nav-link inline-block lg:block mx-4 ${
+                    (
+                      (pathname === `${menu.url}/` || pathname === menu.url) ||
+                      (currentLocale === 'en' && (pathname === `/en${menu.url}/` || pathname === `/en${menu.url}`))
+                    ) &&
+                    "active"
+                  }`}
+                >
+
+                  {t(`nav.${menu.name.toLowerCase()}`)}
                 </a>
               </li>
             )}
@@ -151,6 +212,8 @@ Use the code LEXINGTON30 and <span class="text-gray-400">get a 30% discount on t
           </a>
         -->
         <!-- Language button Mobile-->
+        <LanguageSelector/>
+        {/* 
         <div class="w-16 shadow rounded  m-auto h-8 flex p-1 relative items-center bg-gray-200 border">
           <div class="w-full flex justify-center">
             <button class="cursor-default">EN</button>
@@ -170,19 +233,18 @@ Use the code LEXINGTON30 and <span class="text-gray-400">get a 30% discount on t
           </svg>
           </button>
         </div>
+        */}
         <!-- Language button -->
 
         <!-- Toggle theme mode Mobile-->
         <button data-switch-theme_mobile class="outline-none bg-default flex relative text-heading-2 rounded-full m-2 p-1 lg:p-2">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:flex hidden dark:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:hidden">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-            <title>Switch to Light Mode</title>  
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:hidden ">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
             <title>Switch to Dark Mode</title> 
-            
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:flex hidden dark:text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            <title>Switch to Light Mode</title> 
           </svg>
                           
           <span class="sr-only">switch theme</span>
@@ -200,14 +262,26 @@ Use the code LEXINGTON30 and <span class="text-gray-400">get a 30% discount on t
         </a>
       -->
       <!-- Language button Full page-->
+      
+      <LanguageSelector/>
+      
+      {/*
       <div class="w-16 shadow rounded  m-auto h-8 flex p-1 relative items-center bg-gray-200 border">
+        
+        
         <div class="w-full flex justify-center">
-          <button class="cursor-default">EN</button>
+          <button 
+            class="cursor-default">EN
+          </button>
         </div>
         <div class="w-full flex justify-center">
-          <button class="cursor-default">ES</button>
+          <button class="cursor-default">
+            ES
+          </button>
         </div>
-        <button 
+        
+        <a 
+          href={translatePath(`/${route ? route : ''}`, otherLocales[0].code)}
           class="elSwitch bg-white shadow text-gray-800 flex items-center justify-center w-1/2 rounded h-8 absolute start-0">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 hover:transition hover:delay-200 hover:duration-500 hover:ease-in hover:shadow-2xl hover:h-7 hover:w-7 icon icon-tabler icon-tabler-world" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -217,21 +291,22 @@ Use the code LEXINGTON30 and <span class="text-gray-400">get a 30% discount on t
             <path d="M11.5 3a17 17 0 0 0 0 18"></path>
             <path d="M12.5 3a17 17 0 0 1 0 18"></path>
           </svg>
-          </button>
+          </a>
+          
       </div>
+      */}
       <!-- Language button -->
 
       <!-- Toggle theme mode Full page-->
       <button data-switch-theme class="outline-none bg-default flex relative text-heading-2 rounded-full m-2 p-1 lg:p-2">
           
-        <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:flex hidden dark:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:hidden">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-          <title>Switch to Light Mode</title>  
+          <title>Switch to Dark Mode</title>  
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:hidden ">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:flex hidden dark:text-white ">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-          <title>Switch to Dark Mode</title> 
-          
+          <title>Switch to Light Mode</title> 
         </svg>
                         
         <span class="sr-only">switch theme</span>
@@ -273,6 +348,7 @@ Use the code LEXINGTON30 and <span class="text-gray-400">get a 30% discount on t
   }
   header_2()
 
+  
   function elSwitchs_2() { 
   const elSwitchs = document.querySelectorAll('.elSwitch')
   elSwitchs.forEach( e => {
@@ -289,7 +365,6 @@ Use the code LEXINGTON30 and <span class="text-gray-400">get a 30% discount on t
   } )
   }
   elSwitchs_2()
-
 
   document.addEventListener('astro:after-swap', button_2);
   document.addEventListener('astro:after-swap', header_2);

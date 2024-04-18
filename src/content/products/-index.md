@@ -1,6 +1,5 @@
 ---
-title: Products
-page_title: Our Products
+title: Productos
+page_title: Nuestros Productos
 ---
-Donec sollicitudin molestie malesda. Donec sollitudin molestie malesuada. Mauris <br />
-pellentesque nec, egestas non nisi. Cras ultricies ligula sed magna
+Estos son nuestros productos.

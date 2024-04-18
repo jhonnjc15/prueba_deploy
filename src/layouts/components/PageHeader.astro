@@ -1,5 +1,8 @@
 ---
 import { humanize, markdownify, slugify } from "@lib/utils/textConverter";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const { currentLocale } = Astro
 const { page_data } = Astro.props || {};
 const { title, index_title, page_title, slug, content, index_path } = page_data || {};
 console.log(title)
@@ -15,7 +18,10 @@ console.log(index_path)
     class=" border-2 border-primary breadcrumb inline-flex h-8 items-center justify-center space-x-2 rounded-3xl bg-theme-light px-4 py-2"
   >
     <li class="leading-none text-dark">
-      <a href="/" class="inline-flex items-center text-primary">
+      <a 
+        href={getRelativeLocaleUrl(currentLocale ?? '',`/`)}
+        class="inline-flex items-center text-primary"
+      >
         <svg
           class="mr-1.5"
           width="15"
@@ -36,7 +42,10 @@ console.log(index_path)
         index_title ? (
           <span class="text-sm leading-none">
             /{" "}
-            <a href={`/${index_path}`} class="text-primary">
+            <a 
+              href={getRelativeLocaleUrl(currentLocale ?? '',`/${index_path}`)}
+              class="text-primary"
+            >
               {index_title}
             </a>{" "}
             / {page_title ? page_title : humanize(slug.replace("page /", ""))}
@@ -65,7 +74,7 @@ console.log(index_path)
                 class={`btn m-3 block sm:inline-block ${
                   button?.outline ? "btn-outline-primary" : "btn-primary"
                 } `}
-                href={button?.link}
+                href={getRelativeLocaleUrl(currentLocale ?? '',`${button?.link}`)}
               >
                 {button?.label}
               </a>

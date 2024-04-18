@@ -6,7 +6,7 @@ import Faq from "@layouts/function-components/Faq.jsx";
 import { getEntryBySlug } from "astro:content";
 import ProductsExperiences from "@components/products/ProductsExperiences.astro"
 
-import Products from "@components/products/Products.astro";
+import ProductsList from "@components/products/ProductsList.astro";
 import Blogs from "@components/Blogs.astro";
 import config from "@config/config.json";
 import Pagination from "@layouts/components/Pagination.astro";
@@ -51,10 +51,7 @@ console.log(page_data)
     <ProductsExperiences/>
   </section>
   <section class="border border-red-700 section mt-12 pt-0 mx-10">
-    <h2 class="h4 mb-4">Recent Posts</h2>
-    
-    <Products products={currentPosts} />
-    
+    <ProductsList products={currentPosts} />
     <Pagination
       section={product_folder}
       currentPage={1}
