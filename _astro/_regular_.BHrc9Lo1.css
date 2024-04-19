@@ -1,0 +1,1 @@
+@keyframes comein{0%{opacity:0;transform:translate(-20px)}to{opacity:1;transform:translate(0)}}.comein-animation{animation-name:comein;animation-duration:.3s;animation-timing-function:ease-in-out;animation-fill-mode:forwards}
