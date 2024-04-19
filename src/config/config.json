@@ -2,7 +2,7 @@
   "site": {
     "title": "Paqari Open Lab",
     "base_url": "https://jhonnjc15.github.io",
-    "base_path": "/prueba_deploy",
+    "base_path": "/",
     "trailing_slash": true,
     "favicon": "/images/LogoPaqariTransparentePequeño.png",
     "logo": "/images/LogoPaqariTransparente.png",
